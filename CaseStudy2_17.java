@@ -13,6 +13,7 @@ public class CaseStudy2_17 {
         boolean isCompetition = type.equalsIgnoreCase("BELMAWA")
                 || type.equalsIgnoreCase("BAKORMA")
                 || type.equalsIgnoreCase("Mandiri");
+        boolean isPKM = type.equalsIgnoreCase("PKM");
 
         System.out.println();
         System.out.println("=== AWARD FUND ===");
@@ -40,9 +41,31 @@ public class CaseStudy2_17 {
                 System.out.println("Status   : NOT ELIGIBLE for award funds");
                 System.out.println("Reason   : Only 1st, 2nd, and 3rd place receive funds.");
             }
+
+        } else if (isPKM) {
+            System.out.print("PKM funding status (1 = approved, 0 = not approved): ");
+            int pkmStatus = input.nextInt();
+
+            if (pkmStatus == 1) {
+                System.out.print("Number of documents uploaded (0-4): ");
+                int documents = input.nextInt();
+
+                if (documents == 4) {
+                    System.out.println("Status   : ELIGIBLE for award funds");
+                    System.out.println("Reason   : PKM proposal approved and all 4 documents are complete.");
+                } else {
+                    System.out.println("Status   : NOT ELIGIBLE for award funds");
+                    System.out.println("Reason   : PKM approved, but documents are incomplete.");
+                    System.out.println("Missing  : " + (4 - documents) + " document(s)");
+                }
+            } else {
+                System.out.println("Status   : NOT ELIGIBLE for award funds");
+                System.out.println("Reason   : PKM proposal was not approved for funding.");
+            }
+
         } else {
             System.out.println("Status   : NOT ELIGIBLE for award funds");
-            System.out.println("Reason   : Not a competition activity.");
+            System.out.println("Reason   : Other activities do not receive award funds.");
         }
 
         input.close();
